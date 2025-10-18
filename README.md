@@ -13,7 +13,7 @@ A comprehensive dashboard for managing AI receptionist communications, leads, an
 
 ## 🚀 Quick Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR-USERNAME/battleplan-dashboard)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/battleplanconsult/battleplan-dashboard)
 
 ## 📦 Installation
 ```bash
