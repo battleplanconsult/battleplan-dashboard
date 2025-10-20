@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useMemo } from 'react';
 import { BarChart3, Mail, Phone, Users, TrendingUp, Calendar, Bell, Search, Filter, Plus, ChevronRight, MessageSquare, CheckCircle2, Clock, AlertCircle, ChevronLeft } from 'lucide-react';
 
