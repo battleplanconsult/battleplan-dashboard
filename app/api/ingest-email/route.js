@@ -25,7 +25,7 @@ export async function POST(request) {
       .single()
 
     if (routingError || !routing) {
-      return NextResponse.json({ error: 'Client not found for this email' }, { status: 404 })
+      return NextResponse.json({ error: 'Client not found' }, { status: 404 })
     }
 
     const intent = extractIntent(subject, body_plain)
@@ -48,7 +48,7 @@ export async function POST(request) {
 
     if (commError) throw commError
 
-    const { data: opp, error: oppError } = await supabase
+    await supabase
       .from('opportunities')
       .insert({
         client_id: routing.client_id,
@@ -63,7 +63,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, communication_id: comm.id })
   } catch (error) {
-    console.error('Error processing email:', error)
+    console.error('Error:', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
@@ -72,8 +72,8 @@ function extractIntent(subject, body) {
   const text = `${subject} ${body}`.toLowerCase()
   
   if (text.includes('trial') || text.includes('try')) return 'Trial Request'
-  if (text.includes('price') || text.includes('cost') || text.includes('membership')) return 'Pricing Inquiry'
-  if (text.includes('schedule') || text.includes('class') || text.includes('time')) return 'Schedule Question'
+  if (text.includes('price') || text.includes('cost')) return 'Pricing Inquiry'
+  if (text.includes('schedule') || text.includes('class')) return 'Schedule Question'
   if (text.includes('kid') || text.includes('child')) return 'Kids Program'
   
   return 'General Inquiry'
